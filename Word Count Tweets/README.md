@@ -26,4 +26,16 @@ To check the program without using hadoop run the following command in a bash te
 ```bash
 cat tweets.json | python3 mapJSON.py | sort | python3 reduceJSON.py | less
 ```
+To run using hadoop invoke the following in command line.
+```bash
+hdfs dfs -put tweets.json input
+hadoop jar $HADOOP_HOME/hadoop/share/hadoop/tools/lib/hadoop-streaming-2.6.4.jar -input input -output output -mapper mapJSON.py -reducer reduceJSON.py
+```
+<b>Notes:</b>
+<ol>
+<li>The hadoop streaming version mentioned here may change depending upon your installed version.
+<li>The HADOOP_HOME directory will change as per your installation.
+</ol>
 
+### Output
+The <a href="https://github.com/InvisibleNemo/MapReduce/tree/master/Word%20Count%20Tweets/output">output</a> folder contains a sample output as would be expected after running the program using hadoop.
